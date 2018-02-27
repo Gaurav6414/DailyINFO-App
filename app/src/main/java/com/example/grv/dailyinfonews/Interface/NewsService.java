@@ -1,5 +1,6 @@
 package com.example.grv.dailyinfonews.Interface;
 
+import com.example.grv.dailyinfonews.Common.Common;
 import com.example.grv.dailyinfonews.Model.WebSite;
 
 import retrofit2.Call;
@@ -11,7 +12,7 @@ import retrofit2.http.GET;
 
 public interface NewsService {
 
-    @GET ("v2/sources?language=en&apiKey=2ae84de68c1b45279b47ff88afbafdfc")
+    @GET ("v2/sources?language=en&apiKey=" + Common.API_KEY)
 
     Call<WebSite> getSources();
 
