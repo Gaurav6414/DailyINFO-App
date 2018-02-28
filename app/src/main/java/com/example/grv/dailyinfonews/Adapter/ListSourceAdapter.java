@@ -1,6 +1,7 @@
 package com.example.grv.dailyinfonews.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.grv.dailyinfonews.Interface.ItemClickListener;
+import com.example.grv.dailyinfonews.ListNews;
 import com.example.grv.dailyinfonews.Model.WebSite;
 import com.example.grv.dailyinfonews.R;
 
@@ -32,6 +34,8 @@ class ListSourceViewHolder extends RecyclerView.ViewHolder implements View.OnCli
 
         source_title = (TextView) itemView.findViewById(R.id.source_name);
         source_image = (CircleImageView) itemView.findViewById(R.id.source_image);
+
+        itemView.setOnClickListener(this);
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
@@ -71,7 +75,12 @@ public class ListSourceAdapter extends RecyclerView.Adapter<ListSourceViewHolder
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
-                
+
+                Intent intent = new Intent(context, ListNews.class);
+                intent.putExtra("source",webSite.getSources().get(position).getId());
+                context.startActivity(intent);
+
+
             }
         });
 

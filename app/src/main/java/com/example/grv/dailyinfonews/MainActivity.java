@@ -43,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
 
         //init layout view
 
+        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadWebSiteSOurce(true);
+            }
+        });
+
         listWebSite = (RecyclerView) findViewById(R.id.list_item_recycle);
 
         listWebSite.setHasFixedSize(true);
@@ -52,14 +60,6 @@ public class MainActivity extends AppCompatActivity {
         listWebSite.setLayoutManager(layoutManager);
 
         dialog = new SpotsDialog(this);
-
-        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                loadWebSiteSOurce(true);
-            }
-        });
 
         loadWebSiteSOurce(false);
     }
