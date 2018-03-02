@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.grv.dailyinfonews.Common.ISO8601;
 import com.example.grv.dailyinfonews.Interface.ItemClickListener;
 import com.example.grv.dailyinfonews.R;
 import com.github.curioustechizen.ago.RelativeTimeTextView;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -76,7 +79,29 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsViewHolder>{
         Picasso.with(context)
                 .load(articleList.get(position).getUrlToImage())
                 .into(holder.article_image);
-        
+
+        if(articleList.get(position).getTitle().length() > 65)
+            holder.article_title.setText(articleList.get(position).getTitle().substring(0,65)+ "....");
+        else
+            holder.article_title.setText(articleList.get(position).getTitle());
+
+        Date date = null;
+        try {
+            date = ISO8601.parse(articleList.get(position).getPublishedAt());
+
+        } catch (ParseException ex){
+            ex.printStackTrace();
+        }
+        holder.article_time.setReferenceTime(date.getTime());
+
+        //event click
+
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick) {
+                /// will code later
+            }
+        });
 
     }
 

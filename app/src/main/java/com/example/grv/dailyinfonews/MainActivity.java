@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         listWebSite.setLayoutManager(layoutManager);
 
         dialog = new SpotsDialog(this);
-
         loadWebSiteSOurce(false);
+
     }
 
     private void loadWebSiteSOurce(boolean isRefreshed) {

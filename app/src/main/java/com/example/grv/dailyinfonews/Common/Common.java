@@ -17,4 +17,16 @@ public class Common {
 
         return RetrofitClient.getClient(BASE_URL).create(NewsService.class);
     }
+
+    //https://newsapi.org/v2/everything?q=bitcoin&apiKey=2ae84de68c1b45279b47ff88afbafdfc
+
+    public static String getApiUrl(String source,String apiKey){
+
+        StringBuilder apiUrl = new StringBuilder("https://newsapi.org/v2/everything?q=");
+        return apiUrl.append(source)
+                .append("&apiKey=")
+                .append(apiKey)
+                .toString();
+
+    }
 }

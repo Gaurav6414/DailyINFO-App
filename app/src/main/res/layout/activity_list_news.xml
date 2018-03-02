@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/swipeRefresh1"
     tools:context="com.example.grv.dailyinfonews.ListNews">
 
     <RelativeLayout
@@ -14,7 +15,7 @@
             android:id="@+id/diagonal_layout"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            app:diagonal_angle="10"
+            app:diagonal_angle="5"
             app:diagonal_direction="left"
             app:diagonal_position="bottom">
 
@@ -37,14 +38,14 @@
                     android:fontFamily="sans-serif-light"
                     android:gravity="start"
                     android:textSize="25sp" />
-                
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
-                    android:orientation="vertical"
-                    android:background="#A0333639">
+                    android:background="#A0333639"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/top_title"
@@ -54,6 +55,7 @@
                         android:layout_marginLeft="30dp"
                         android:fontFamily="sans-serif-light"
                         android:gravity="top|left"
+                        android:textColor="@android:color/white"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -64,16 +66,19 @@
 
 
         </com.github.florent37.diagonallayout.DiagonalLayout>
-        
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/diagonal_layout"
+            android:id="@+id/first_news">
+        </android.support.v7.widget.RecyclerView>
         
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/first_news">
 
 
-    </android.support.v7.widget.RecyclerView>
+
+
 
 </android.support.v4.widget.SwipeRefreshLayout>
