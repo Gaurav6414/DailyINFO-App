@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         listWebSite.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
-
         listWebSite.setLayoutManager(layoutManager);
 
         dialog = new SpotsDialog(this);
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadWebSiteSOurce(boolean isRefreshed) {
 
-        if (! isRefreshed){
+        if (!isRefreshed) {
 
             String cache = Paper.book().read("cache");
 
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             {
-                dialog.show();  //fetch latest data
+                dialog.dismiss();  //fetch latest data
 
                 mService.getSources().enqueue(new Callback<WebSite>() {
                     @Override
@@ -88,8 +87,9 @@ public class MainActivity extends AppCompatActivity {
                         adapter.notifyDataSetChanged();
                         listWebSite.setAdapter(adapter);
 
+                        Paper.book().write("cache", new Gson().toJson(response.body()));
 
-                        Paper.book().write("cache",new Gson().toJson(response.body())); //saving cache
+                        //saving cache
                     }
 
                     @Override
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         else
         {
-            dialog.show();  //fetch latest data
+            dialog.dismiss();  //fetch latest data
 
             mService.getSources().enqueue(new Callback<WebSite>() {
                 @Override
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //dismiss refresh
 
-                    refreshLayout.setRefreshing(false);
+
                 }
 
 
@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
+            refreshLayout.setRefreshing(false);
         }
     }
 }

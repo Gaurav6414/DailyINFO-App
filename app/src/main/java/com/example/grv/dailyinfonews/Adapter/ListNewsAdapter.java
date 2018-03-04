@@ -2,6 +2,7 @@ package com.example.grv.dailyinfonews.Adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.grv.dailyinfonews.Common.ISO8601;
+import com.example.grv.dailyinfonews.DetailNews;
 import com.example.grv.dailyinfonews.Interface.ItemClickListener;
 import com.example.grv.dailyinfonews.R;
 import com.github.curioustechizen.ago.RelativeTimeTextView;
@@ -99,7 +101,9 @@ public class ListNewsAdapter extends RecyclerView.Adapter<ListNewsViewHolder>{
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
-                /// will code later
+                Intent detail = new Intent(context, DetailNews.class);
+                detail.putExtra("webUrl", articleList.get(position).getUrl());
+                context.startActivity(detail);
             }
         });
 

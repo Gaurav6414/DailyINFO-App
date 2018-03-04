@@ -9,9 +9,8 @@ import com.example.grv.dailyinfonews.Remote.RetrofitClient;
 
 public class Common {
 
-    private static final String BASE_URL = "https://newsapi.org/";
-
     public static final String API_KEY = "2ae84de68c1b45279b47ff88afbafdfc";
+    private static final String BASE_URL = "https://newsapi.org/";
 
     public static NewsService getNewsService(){
 
@@ -22,7 +21,7 @@ public class Common {
 
     public static String getApiUrl(String source,String apiKey){
 
-        StringBuilder apiUrl = new StringBuilder("https://newsapi.org/v2/everything?q=");
+        StringBuilder apiUrl = new StringBuilder("https://newsapi.org/v2/everything?sources=");
         return apiUrl.append(source)
                 .append("&apiKey=")
                 .append(apiKey)
